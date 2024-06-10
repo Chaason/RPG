@@ -55,6 +55,7 @@ public class Main {
 			Monster m1 = choiceMonster(monsters);
 			//選ばれた人間が選ばれたモンスターを攻撃
 			h1.attack(m1);
+			//hpが0になればリストから外して、リスト要素が0になったらループを終わらせる。
 			if(m1.getHp() <= 0) {
 				System.out.println("\n★「" + m1.getName() + "」　は倒れた。\n");
 				monsters.remove(m1);
@@ -70,6 +71,7 @@ public class Main {
 			Monster m2 = choiceMonster(monsters);
 			//選ばれたモンスターが選ばれた人間を攻撃
 			m2.attack(h2);
+			//hpが0になればリストから外して、リスト要素が0になったらループを終わらせる。
 			if(h2.getHp() <= 0) {
 				System.out.println("\n★「" + h2.getName() + "」　は倒れた。\n");
 				humans.remove(h2);
