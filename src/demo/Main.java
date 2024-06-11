@@ -18,28 +18,26 @@ public class Main {
 	public static void main(String[] args) {
 		System.out.println("★★ ==== 戦いの開始だ！！ ==== ★★");
 		//各人間クラスのインスタンス化
-		Human[]humansTeam = new Human[] {
-				new Brave("沖田総司", "剣"),
-				new Fighter("金太郎", "斧"),
-				new Wizard("安倍晴明", "魔法")
-		};
-		//人間グループのリストに追加
-		List<Human> humans = new ArrayList<>();
-		for(Human h : humansTeam) {
-			humans.add(h);
-		}
+		Human brave = new Brave("沖田総司", "剣");
+		Human fighter = new Fighter("金太郎", "斧");
+		Human wizard = new Wizard("安倍晴明", "魔法");
+		
+		//人間グループをリストに追加
+		List<Human> humans = new ArrayList<>(); 
+		humans.add(brave);
+		humans.add(fighter);
+		humans.add(wizard);
 		
 		//各モンスタークラスのインスタンス化
-		Monster[]monstersTeam = new Monster[] {
-				new Slime("キングスライム", "体当たり"),
-				new Oak("オークキング", "槍"),
-				new Dragon("紅龍", "炎"),
-				};
+		Monster slime = new Slime("キングスライム", "体当たり");
+		Monster oak = new Oak("オークキング", "槍");
+		Monster dragon = new Dragon("紅龍", "炎");
+		
 		//モンスターグループをリストに追加
 		List<Monster> monsters = new ArrayList<>();
-		for(Monster m : monstersTeam) {
-			monsters.add(m);
-		}
+		monsters.add(slime);
+		monsters.add(oak);
+		monsters.add(dragon);
 		
 		//現在の各グループの状態を一覧表示
 		showGroupInfos(humans, monsters);
@@ -51,14 +49,14 @@ public class Main {
 		while(true) {
 			System.out.printf("\n★ 第%d回戦 ==========\n", count);
 			System.out.println("\n[人間のターン！]\n");
-			Human h1 = choiceHuman(humans);
-			Monster m1 = choiceMonster(monsters);
+			Human h = choiceHuman(humans);
+			Monster m = choiceMonster(monsters);
 			//選ばれた人間が選ばれたモンスターを攻撃
-			h1.attack(m1);
+			h.attack(m);
 			//hpが0になればリストから外して、リスト要素が0になったらループを終わらせる。
-			if(m1.getHp() <= 0) {
-				System.out.println("\n★「" + m1.getName() + "」　は倒れた。\n");
-				monsters.remove(m1);
+			if(m.getHp() <= 0) {
+				System.out.println("\n★「" + m.getName() + "」　は倒れた。\n");
+				monsters.remove(m);
 			}
 			if(monsters.isEmpty()) {
 				System.out.println("\n★★ ==== 決着がついた！！ ==== ★★\n");
@@ -67,14 +65,14 @@ public class Main {
 			}
 			
 			System.out.println("\n[モンスターのターン！]\n");
-			Human h2 = choiceHuman(humans);
-			Monster m2 = choiceMonster(monsters);
+			h = choiceHuman(humans);
+			m = choiceMonster(monsters);
 			//選ばれたモンスターが選ばれた人間を攻撃
-			m2.attack(h2);
+			m.attack(h);
 			//hpが0になればリストから外して、リスト要素が0になったらループを終わらせる。
-			if(h2.getHp() <= 0) {
-				System.out.println("\n★「" + h2.getName() + "」　は倒れた。\n");
-				humans.remove(h2);
+			if(h.getHp() <= 0) {
+				System.out.println("\n★「" + h.getName() + "」　は倒れた。\n");
+				humans.remove(h);
 			}
 			if(humans.isEmpty()) {
 				System.out.println("\n★★ ==== 決着がついた！！ ==== ★★\n");
