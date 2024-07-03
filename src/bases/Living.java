@@ -57,6 +57,6 @@ public abstract class Living {
 			alert ="★ HP残りわずか！アブナイ";
 		}
 		return String.format("[名前]: %s, [ヒットポイント]: %d, [攻撃力]: %d %s", this.name, this.hp, this.offensive, alert);
-	}
+	} 
 	
 }
